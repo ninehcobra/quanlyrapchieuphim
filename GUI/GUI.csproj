@@ -423,5 +423,11 @@
   <ItemGroup>
     <None Include="Resources\login_user_profile_account_logout_people_man_human-512.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roll-film.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

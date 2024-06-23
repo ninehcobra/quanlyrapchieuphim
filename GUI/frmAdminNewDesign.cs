@@ -57,5 +57,10 @@ namespace GUI
             accountUc.Dock = DockStyle.Fill;
             pnAdmin.Controls.Add(accountUc);
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

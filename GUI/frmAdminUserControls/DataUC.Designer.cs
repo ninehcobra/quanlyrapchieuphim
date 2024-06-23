@@ -54,17 +54,17 @@
             this.panel1.Controls.Add(this.btnScreenTypeUC);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(279, 658);
+            this.panel1.Size = new System.Drawing.Size(209, 535);
             this.panel1.TabIndex = 0;
             // 
             // SidePanel
             // 
             this.SidePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
-            this.SidePanel.Location = new System.Drawing.Point(0, 74);
-            this.SidePanel.Margin = new System.Windows.Forms.Padding(4);
+            this.SidePanel.Location = new System.Drawing.Point(0, 60);
             this.SidePanel.Name = "SidePanel";
-            this.SidePanel.Size = new System.Drawing.Size(13, 66);
+            this.SidePanel.Size = new System.Drawing.Size(10, 54);
             this.SidePanel.TabIndex = 5;
             // 
             // btnTicketsUC
@@ -75,10 +75,9 @@
             this.btnTicketsUC.ForeColor = System.Drawing.Color.White;
             this.btnTicketsUC.Image = global::GUI.Properties.Resources.Untitled_2_0008_Layer;
             this.btnTicketsUC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTicketsUC.Location = new System.Drawing.Point(15, 470);
-            this.btnTicketsUC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTicketsUC.Location = new System.Drawing.Point(11, 382);
             this.btnTicketsUC.Name = "btnTicketsUC";
-            this.btnTicketsUC.Size = new System.Drawing.Size(263, 66);
+            this.btnTicketsUC.Size = new System.Drawing.Size(197, 54);
             this.btnTicketsUC.TabIndex = 6;
             this.btnTicketsUC.Text = "       Vé";
             this.btnTicketsUC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -93,10 +92,9 @@
             this.btnShowTimesUC.ForeColor = System.Drawing.Color.White;
             this.btnShowTimesUC.Image = global::GUI.Properties.Resources.Untitled_2_0002_Layer_7;
             this.btnShowTimesUC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnShowTimesUC.Location = new System.Drawing.Point(15, 404);
-            this.btnShowTimesUC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowTimesUC.Location = new System.Drawing.Point(11, 328);
             this.btnShowTimesUC.Name = "btnShowTimesUC";
-            this.btnShowTimesUC.Size = new System.Drawing.Size(263, 66);
+            this.btnShowTimesUC.Size = new System.Drawing.Size(197, 54);
             this.btnShowTimesUC.TabIndex = 7;
             this.btnShowTimesUC.Text = "      Lịch Chiếu";
             this.btnShowTimesUC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -111,10 +109,9 @@
             this.btnFormatMovieUC.ForeColor = System.Drawing.Color.White;
             this.btnFormatMovieUC.Image = global::GUI.Properties.Resources.Untitled_2_0004_Layer_5;
             this.btnFormatMovieUC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFormatMovieUC.Location = new System.Drawing.Point(15, 337);
-            this.btnFormatMovieUC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormatMovieUC.Location = new System.Drawing.Point(11, 274);
             this.btnFormatMovieUC.Name = "btnFormatMovieUC";
-            this.btnFormatMovieUC.Size = new System.Drawing.Size(263, 66);
+            this.btnFormatMovieUC.Size = new System.Drawing.Size(197, 54);
             this.btnFormatMovieUC.TabIndex = 8;
             this.btnFormatMovieUC.Text = "      Định Dạng";
             this.btnFormatMovieUC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -129,10 +126,9 @@
             this.btnMovieUC.ForeColor = System.Drawing.Color.White;
             this.btnMovieUC.Image = global::GUI.Properties.Resources.Untitled_2_0005_Layer_4;
             this.btnMovieUC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMovieUC.Location = new System.Drawing.Point(15, 271);
-            this.btnMovieUC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMovieUC.Location = new System.Drawing.Point(11, 220);
             this.btnMovieUC.Name = "btnMovieUC";
-            this.btnMovieUC.Size = new System.Drawing.Size(263, 66);
+            this.btnMovieUC.Size = new System.Drawing.Size(197, 54);
             this.btnMovieUC.TabIndex = 9;
             this.btnMovieUC.Text = "       Phim";
             this.btnMovieUC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -147,10 +143,9 @@
             this.btnGenreUC.ForeColor = System.Drawing.Color.White;
             this.btnGenreUC.Image = global::GUI.Properties.Resources.Untitled_2_0003_Layer_6;
             this.btnGenreUC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGenreUC.Location = new System.Drawing.Point(15, 205);
-            this.btnGenreUC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGenreUC.Location = new System.Drawing.Point(11, 167);
             this.btnGenreUC.Name = "btnGenreUC";
-            this.btnGenreUC.Size = new System.Drawing.Size(263, 66);
+            this.btnGenreUC.Size = new System.Drawing.Size(197, 54);
             this.btnGenreUC.TabIndex = 10;
             this.btnGenreUC.Text = "      Thể Loại";
             this.btnGenreUC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -165,10 +160,9 @@
             this.btnCinemaUC.ForeColor = System.Drawing.Color.White;
             this.btnCinemaUC.Image = global::GUI.Properties.Resources.Untitled_2_0007_Layer_2;
             this.btnCinemaUC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCinemaUC.Location = new System.Drawing.Point(15, 138);
-            this.btnCinemaUC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCinemaUC.Location = new System.Drawing.Point(11, 112);
             this.btnCinemaUC.Name = "btnCinemaUC";
-            this.btnCinemaUC.Size = new System.Drawing.Size(263, 66);
+            this.btnCinemaUC.Size = new System.Drawing.Size(197, 54);
             this.btnCinemaUC.TabIndex = 11;
             this.btnCinemaUC.Text = "       Phòng Chiếu";
             this.btnCinemaUC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -183,10 +177,9 @@
             this.btnScreenTypeUC.ForeColor = System.Drawing.Color.White;
             this.btnScreenTypeUC.Image = global::GUI.Properties.Resources.Untitled_2_0001_Layer_8;
             this.btnScreenTypeUC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnScreenTypeUC.Location = new System.Drawing.Point(15, 72);
-            this.btnScreenTypeUC.Margin = new System.Windows.Forms.Padding(4);
+            this.btnScreenTypeUC.Location = new System.Drawing.Point(11, 58);
             this.btnScreenTypeUC.Name = "btnScreenTypeUC";
-            this.btnScreenTypeUC.Size = new System.Drawing.Size(263, 66);
+            this.btnScreenTypeUC.Size = new System.Drawing.Size(197, 54);
             this.btnScreenTypeUC.TabIndex = 12;
             this.btnScreenTypeUC.Text = "     Loại màn hình";
             this.btnScreenTypeUC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -195,20 +188,23 @@
             // 
             // pnData
             // 
+            this.pnData.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pnData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnData.Location = new System.Drawing.Point(279, 18);
+            this.pnData.Location = new System.Drawing.Point(209, 15);
+            this.pnData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnData.Name = "pnData";
-            this.pnData.Size = new System.Drawing.Size(1551, 640);
+            this.pnData.Size = new System.Drawing.Size(1163, 520);
             this.pnData.TabIndex = 1;
             // 
             // DataUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnData);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DataUC";
-            this.Size = new System.Drawing.Size(1830, 658);
+            this.Size = new System.Drawing.Size(1372, 535);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

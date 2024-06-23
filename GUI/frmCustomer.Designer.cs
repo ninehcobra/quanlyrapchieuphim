@@ -36,19 +36,22 @@
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnThanhVien.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCofirm
             // 
             this.btnCofirm.AutoSize = true;
-            this.btnCofirm.Location = new System.Drawing.Point(16, 87);
+            this.btnCofirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.btnCofirm.ForeColor = System.Drawing.Color.White;
+            this.btnCofirm.Location = new System.Drawing.Point(75, 87);
             this.btnCofirm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnCofirm.Name = "btnCofirm";
             this.btnCofirm.Size = new System.Drawing.Size(120, 35);
             this.btnCofirm.TabIndex = 2;
             this.btnCofirm.Text = "Xác Nhận";
-            this.btnCofirm.UseVisualStyleBackColor = true;
+            this.btnCofirm.UseVisualStyleBackColor = false;
             this.btnCofirm.Click += new System.EventHandler(this.btnXacNhan_Click);
             // 
             // label2
@@ -85,7 +88,7 @@
             this.txtCustomerName.Location = new System.Drawing.Point(160, 45);
             this.txtCustomerName.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(302, 30);
+            this.txtCustomerName.Size = new System.Drawing.Size(302, 26);
             this.txtCustomerName.TabIndex = 2;
             // 
             // txtCustomerID
@@ -93,40 +96,59 @@
             this.txtCustomerID.Location = new System.Drawing.Point(160, 6);
             this.txtCustomerID.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.Size = new System.Drawing.Size(302, 30);
+            this.txtCustomerID.Size = new System.Drawing.Size(302, 26);
             this.txtCustomerID.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(11, 9);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(153, 25);
+            this.label4.Size = new System.Drawing.Size(120, 20);
             this.label4.TabIndex = 1;
             this.label4.Text = "Mã Thành Viên:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(11, 48);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 25);
+            this.label3.Size = new System.Drawing.Size(65, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Họ Tên:";
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(289, 87);
+            this.button1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 35);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Hủy";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmCustomer
             // 
             this.AcceptButton = this.btnCofirm;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(81)))));
             this.ClientSize = new System.Drawing.Size(477, 132);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.pnThanhVien);
             this.Controls.Add(this.btnCofirm);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "frmCustomer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -148,5 +170,6 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox txtCustomerName;
         public System.Windows.Forms.TextBox txtCustomerID;
+        private System.Windows.Forms.Button button1;
     }
 }
