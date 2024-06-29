@@ -63,6 +63,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _448707546_1009456157450605_1525646024684689610_n {
+            get {
+                object obj = ResourceManager.GetObject("448707546_1009456157450605_1525646024684689610_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Apps_Dialog_Shutdown_icon {
             get {
                 object obj = ResourceManager.GetObject("Apps-Dialog-Shutdown-icon", resourceCulture);

@@ -32,20 +32,26 @@ namespace GUI.DAO
             return new string(arr);
         }
 
-        public static int Login(string userName, string passWord)
+        public static (int, string) Login(string userName, string passWord)
         {
             string pass = PasswordEncryption(passWord);
 
             string query = "USP_Login @userName , @passWord";
             DataTable result = DataProvider.ExecuteQuery(query, new object[] { userName, pass });
 
-            if (result == null)
-                return -1;
-            else if (result.Rows.Count > 0)
-                return 1;
-            else
-                return 0;
+            if (result == null || result.Rows.Count == 0)
+                return (-1, null);
 
+            string source = result.Rows[0]["Source"].ToString();
+            if (source == "TaiKhoan")
+            {
+                return (1, "AdminOrStaff");
+            }
+            else if (source == "NguoiDung")
+            {
+                return (1, "User");
+            }
+            return (0, null);
         }
 
         public static bool UpdatePasswordForAccount(string userName, string passWord, string newPassWord)
@@ -110,5 +116,23 @@ namespace GUI.DAO
 			int result = DataProvider.ExecuteNonQuery("USP_ResetPasswordtAccount @username", new object[] { username});
 			return result > 0;
 		}
+
+        public static string GetAccountType(string userName)
+        {
+            DataTable data = DataProvider.ExecuteQuery("SELECT LoaiTK FROM TaiKhoan WHERE UserName = '" + userName + "'");
+
+            if (data != null && data.Rows.Count > 0)
+            {
+                int type = (int)data.Rows[0]["LoaiTK"];
+                if (type == 1)
+                    return "Admin";
+                else if (type == 2)
+                    return "Staff";
+                else
+                    return "User";
+            }
+
+            return null;
+        }
     }
 }

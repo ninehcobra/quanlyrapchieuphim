@@ -19,7 +19,7 @@ namespace GUI
             string userName = txtUsername.Text;
             string passWord = txtPassword.Text;
             int result = Login(userName, passWord);
-            if (result == 1)
+            if (result == 2 || result==3)
             {
                 Account loginAccount = AccountDAO.GetAccountByUserName(userName);
                 frmDashBoard frm = new frmDashBoard(loginAccount);
@@ -40,7 +40,26 @@ namespace GUI
 
         private int Login(string userName, string passWord)
         {
-            return AccountDAO.Login(userName, passWord);
+            (int loginStatus, string accountType) = AccountDAO.Login(userName, passWord);
+
+            if (loginStatus == -1)
+                return -1; // Đăng nhập thất bại
+
+            if (accountType == "AdminOrStaff")
+            {
+                // Kiểm tra loại tài khoản cụ thể
+                string specificAccountType = AccountDAO.GetAccountType(userName);
+                if (specificAccountType == "Admin")
+                    return 2; // Admin
+                else if (specificAccountType == "Staff")
+                    return 3; // Staff
+            }
+            else if (accountType == "User")
+            {
+                return 1; // Người dùng
+            }
+
+            return 0; // Trường hợp không xác định
         }
 
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
@@ -74,6 +93,11 @@ namespace GUI
                 txtPassword.PasswordChar = '•';
 
             }
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
