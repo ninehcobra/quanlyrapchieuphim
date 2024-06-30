@@ -220,11 +220,23 @@
     <Compile Include="frmAdminUserControls\StaffUC.Designer.cs">
       <DependentUpon>StaffUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClient.Designer.cs">
+      <DependentUpon>frmClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConnectData.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmConnectData.Designer.cs">
       <DependentUpon>frmConnectData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmForgotPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmForgotPassword.Designer.cs">
+      <DependentUpon>frmForgotPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -306,8 +318,14 @@
     <EmbeddedResource Include="frmAdminUserControls\StaffUC.resx">
       <DependentUpon>StaffUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmClient.resx">
+      <DependentUpon>frmClient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConnectData.resx">
       <DependentUpon>frmConnectData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmForgotPassword.resx">
+      <DependentUpon>frmForgotPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -435,6 +453,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\448707546_1009456157450605_1525646024684689610_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\448804409_927899652423769_7612098327757499553_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minion-homepage.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ticket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cinema-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kenhcine.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\448905878_3262941527334419_8319597172813869332_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\448717571_800314372302109_8214619151533374099_n.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
