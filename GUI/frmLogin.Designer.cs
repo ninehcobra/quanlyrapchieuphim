@@ -71,7 +71,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(360, 35);
-            this.txtPassword.TabIndex = 9;
+            this.txtPassword.TabIndex = 2;
             // 
             // checkBox1
             // 

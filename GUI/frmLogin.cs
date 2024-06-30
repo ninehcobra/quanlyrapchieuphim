@@ -89,7 +89,13 @@ namespace GUI
             }
             else if(result==1)
             {
-                MessageBox.Show("ĐĂNG NHẬP THÀNH CÔNG", "THÔNG BÁO");
+                User nguoiDung = UserDAO.GetUserByUserName(userName);
+                frmClient frm=new frmClient(nguoiDung);
+                this.Hide();
+                frm.ShowDialog();
+                this.Show();
+
+              
             }    
             else if (result == 0)
             {

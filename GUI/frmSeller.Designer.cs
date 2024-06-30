@@ -269,7 +269,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(52)))));
             this.pictureBox1.Image = global::GUI.Properties.Resources.close;
-            this.pictureBox1.Location = new System.Drawing.Point(980, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(872, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(35, 35);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

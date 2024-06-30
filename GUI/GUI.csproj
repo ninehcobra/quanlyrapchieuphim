@@ -226,6 +226,18 @@
     <Compile Include="frmClient.Designer.cs">
       <DependentUpon>frmClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmClientUserControls\HomeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="frmClientUserControls\HomeUC.Designer.cs">
+      <DependentUpon>HomeUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClientUserControls\MovieUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="frmClientUserControls\MovieUC.Designer.cs">
+      <DependentUpon>MovieUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConnectData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmClient.resx">
       <DependentUpon>frmClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClientUserControls\HomeUC.resx">
+      <DependentUpon>HomeUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClientUserControls\MovieUC.resx">
+      <DependentUpon>MovieUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConnectData.resx">
       <DependentUpon>frmConnectData.cs</DependentUpon>
