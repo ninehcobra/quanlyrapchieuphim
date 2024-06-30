@@ -64,9 +64,13 @@ namespace GUI.frmAdminUserControls
             LoadCustomerList();
         }
 
-        void UpdateCustomer(string id, string hoTen, DateTime ngaySinh, string diaChi, string sdt, int cmnd, int point)
+        void UpdateCustomer(string id, string hoTen, DateTime? ngaySinh, string diaChi, string sdt, int cmnd, int point)
         {
-            if (CustomerDAO.UpdateCustomer(id, hoTen, ngaySinh, diaChi, sdt, cmnd, point))
+            // Kiểm tra và thay thế giá trị null
+            DateTime ngaySinhUpdate = ngaySinh ?? DateTime.MinValue;// Thay thế ngày sinh null bằng DateTime.MinValue
+
+            // Thực hiện update với các giá trị đã được kiểm tra và thay thế
+            if (CustomerDAO.UpdateCustomer(id, hoTen, ngaySinhUpdate, diaChi, sdt, cmnd, point))
             {
                 MessageBox.Show("Sửa khách hàng thành công");
             }
@@ -75,15 +79,31 @@ namespace GUI.frmAdminUserControls
                 MessageBox.Show("Sửa khách hàng thất bại");
             }
         }
+        private const int DefaultCMND = -1;
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
             string cusID = txtCusID.Text;
             string cusName = txtCusName.Text;
-            DateTime cusBirth = DateTime.Parse(txtCusBirth.Text);
+            DateTime? cusBirth = null;
+            if (!string.IsNullOrEmpty(txtCusBirth.Text))
+            {
+                cusBirth = DateTime.Parse(txtCusBirth.Text);
+            }
             string cusAddress = txtCusAddress.Text;
             string cusPhone = txtCusPhone.Text;
-            int cusINumber = Int32.Parse(txtCusINumber.Text);
+            int cusINumber;
+            if (string.IsNullOrEmpty(txtCusINumber.Text))
+            {
+                cusINumber = DefaultCMND; // Sử dụng giá trị mặc định khi không nhập số CMND
+            }
+            else if (!Int32.TryParse(txtCusINumber.Text, out cusINumber))
+            {
+                // Xử lý trường hợp không parse được
+                MessageBox.Show("Số CMND không hợp lệ");
+                return; // Dừng việc thêm khách hàng
+            }
             int cusPoint = (int)nudPoint.Value;
+
             UpdateCustomer(cusID, cusName, cusBirth, cusAddress, cusPhone, cusINumber, cusPoint);
             LoadCustomerList();
         }

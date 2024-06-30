@@ -137,7 +137,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1161, 518);
             this.panel1.TabIndex = 11;
@@ -147,6 +147,7 @@
             this.dtgvMovie.AllowUserToAddRows = false;
             this.dtgvMovie.AllowUserToDeleteRows = false;
             this.dtgvMovie.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvMovie.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dtgvMovie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvMovie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvMovie.Location = new System.Drawing.Point(0, 278);
@@ -182,7 +183,7 @@
             this.panel2.Controls.Add(this.lblMovieID);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1161, 226);
             this.panel2.TabIndex = 0;
@@ -193,7 +194,7 @@
             this.btnUpLoadPictureFilm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpLoadPictureFilm.ForeColor = System.Drawing.Color.White;
             this.btnUpLoadPictureFilm.Location = new System.Drawing.Point(717, 187);
-            this.btnUpLoadPictureFilm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpLoadPictureFilm.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpLoadPictureFilm.Name = "btnUpLoadPictureFilm";
             this.btnUpLoadPictureFilm.Size = new System.Drawing.Size(118, 33);
             this.btnUpLoadPictureFilm.TabIndex = 56;
@@ -205,7 +206,7 @@
             // 
             this.picFilm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picFilm.Location = new System.Drawing.Point(707, 2);
-            this.picFilm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picFilm.Margin = new System.Windows.Forms.Padding(2);
             this.picFilm.Name = "picFilm";
             this.picFilm.Size = new System.Drawing.Size(140, 177);
             this.picFilm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -217,7 +218,7 @@
             this.clbMovieGenre.CheckOnClick = true;
             this.clbMovieGenre.FormattingEnabled = true;
             this.clbMovieGenre.Location = new System.Drawing.Point(11, 123);
-            this.clbMovieGenre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clbMovieGenre.Margin = new System.Windows.Forms.Padding(2);
             this.clbMovieGenre.MultiColumn = true;
             this.clbMovieGenre.Name = "clbMovieGenre";
             this.clbMovieGenre.Size = new System.Drawing.Size(251, 79);
@@ -227,7 +228,7 @@
             // 
             this.dtmMovieEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtmMovieEnd.Location = new System.Drawing.Point(481, 69);
-            this.dtmMovieEnd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtmMovieEnd.Margin = new System.Windows.Forms.Padding(2);
             this.dtmMovieEnd.Name = "dtmMovieEnd";
             this.dtmMovieEnd.Size = new System.Drawing.Size(152, 20);
             this.dtmMovieEnd.TabIndex = 53;
@@ -236,7 +237,7 @@
             // 
             this.dtmMovieStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtmMovieStart.Location = new System.Drawing.Point(481, 41);
-            this.dtmMovieStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtmMovieStart.Margin = new System.Windows.Forms.Padding(2);
             this.dtmMovieStart.Name = "dtmMovieStart";
             this.dtmMovieStart.Size = new System.Drawing.Size(152, 20);
             this.dtmMovieStart.TabIndex = 52;
@@ -244,7 +245,7 @@
             // txtMovieYear
             // 
             this.txtMovieYear.Location = new System.Drawing.Point(480, 163);
-            this.txtMovieYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMovieYear.Margin = new System.Windows.Forms.Padding(2);
             this.txtMovieYear.Name = "txtMovieYear";
             this.txtMovieYear.Size = new System.Drawing.Size(152, 20);
             this.txtMovieYear.TabIndex = 50;
@@ -252,7 +253,7 @@
             // txtMovieDirector
             // 
             this.txtMovieDirector.Location = new System.Drawing.Point(480, 135);
-            this.txtMovieDirector.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMovieDirector.Margin = new System.Windows.Forms.Padding(2);
             this.txtMovieDirector.Name = "txtMovieDirector";
             this.txtMovieDirector.Size = new System.Drawing.Size(152, 20);
             this.txtMovieDirector.TabIndex = 49;
@@ -260,7 +261,7 @@
             // txtMovieProductor
             // 
             this.txtMovieProductor.Location = new System.Drawing.Point(480, 104);
-            this.txtMovieProductor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMovieProductor.Margin = new System.Windows.Forms.Padding(2);
             this.txtMovieProductor.Name = "txtMovieProductor";
             this.txtMovieProductor.Size = new System.Drawing.Size(152, 20);
             this.txtMovieProductor.TabIndex = 48;
@@ -268,7 +269,7 @@
             // txtMovieLength
             // 
             this.txtMovieLength.Location = new System.Drawing.Point(481, 13);
-            this.txtMovieLength.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMovieLength.Margin = new System.Windows.Forms.Padding(2);
             this.txtMovieLength.Name = "txtMovieLength";
             this.txtMovieLength.Size = new System.Drawing.Size(152, 20);
             this.txtMovieLength.TabIndex = 47;
@@ -312,7 +313,7 @@
             // txtMovieDesc
             // 
             this.txtMovieDesc.Location = new System.Drawing.Point(110, 73);
-            this.txtMovieDesc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMovieDesc.Margin = new System.Windows.Forms.Padding(2);
             this.txtMovieDesc.Multiline = true;
             this.txtMovieDesc.Name = "txtMovieDesc";
             this.txtMovieDesc.Size = new System.Drawing.Size(152, 19);
@@ -381,7 +382,7 @@
             // txtMovieName
             // 
             this.txtMovieName.Location = new System.Drawing.Point(110, 44);
-            this.txtMovieName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMovieName.Margin = new System.Windows.Forms.Padding(2);
             this.txtMovieName.Name = "txtMovieName";
             this.txtMovieName.Size = new System.Drawing.Size(152, 20);
             this.txtMovieName.TabIndex = 51;
@@ -401,7 +402,7 @@
             // txtMovieID
             // 
             this.txtMovieID.Location = new System.Drawing.Point(110, 13);
-            this.txtMovieID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMovieID.Margin = new System.Windows.Forms.Padding(2);
             this.txtMovieID.Name = "txtMovieID";
             this.txtMovieID.Size = new System.Drawing.Size(152, 20);
             this.txtMovieID.TabIndex = 45;
@@ -424,7 +425,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MovieUC";
             this.Size = new System.Drawing.Size(1161, 518);
             this.panel47.ResumeLayout(false);

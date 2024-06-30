@@ -37,10 +37,27 @@ namespace GUI
             else if(clientUC =="movie")
             {
                 pnlContent.Controls.Clear();
-                MovieUC movieUC = new MovieUC(this);
+                MovieUC movieUC = new MovieUC(this,this.loginAccount);
                 movieUC.Dock = DockStyle.Fill;
                 pnlContent.Controls.Add(movieUC);
+            } 
+            else if(clientUC =="booking")
+            {
+                pnlContent.Controls.Clear();
+            }
+            else if(clientUC =="info")
+            {
+                pnlContent.Controls.Clear();
+                InfoUC infoUC = new InfoUC(this.loginAccount);
+                infoUC.Dock = DockStyle.Fill;
+                pnlContent.Controls.Add(infoUC);
             }    
+        }
+
+        public void SetBooking(BookingUC bookingUC)
+        {
+            bookingUC.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(bookingUC);
         }
 
         private User loginAccount;
@@ -62,16 +79,42 @@ namespace GUI
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            frmLogin frmLogin = new frmLogin();
-            frmLogin.Show();
+          
             this.Close();
             
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            clientUC = "movie";
-            RenderContent();
+           if(clientUC=="movie")
+            { }
+            else
+            {
+                clientUC = "movie";
+                RenderContent();
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+           if(clientUC =="home")
+            { }
+            else
+            {
+                clientUC = "home";
+                RenderContent();
+            }
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            if(clientUC=="info")
+            { }
+            else
+            {
+                clientUC= "info";
+                RenderContent();
+            }
         }
     }
 }

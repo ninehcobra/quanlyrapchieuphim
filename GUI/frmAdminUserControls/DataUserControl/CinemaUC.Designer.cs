@@ -147,7 +147,7 @@
             this.panel2.Controls.Add(this.panel32);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(755, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(333, 466);
             this.panel2.TabIndex = 0;
@@ -166,7 +166,7 @@
             this.cboCinemaScreenType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCinemaScreenType.FormattingEnabled = true;
             this.cboCinemaScreenType.Location = new System.Drawing.Point(132, 9);
-            this.cboCinemaScreenType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboCinemaScreenType.Margin = new System.Windows.Forms.Padding(2);
             this.cboCinemaScreenType.Name = "cboCinemaScreenType";
             this.cboCinemaScreenType.Size = new System.Drawing.Size(162, 21);
             this.cboCinemaScreenType.TabIndex = 1;
@@ -351,7 +351,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 52);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1088, 466);
             this.panel1.TabIndex = 11;
@@ -361,6 +361,7 @@
             this.dtgvCinema.AllowUserToAddRows = false;
             this.dtgvCinema.AllowUserToDeleteRows = false;
             this.dtgvCinema.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvCinema.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dtgvCinema.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCinema.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvCinema.Location = new System.Drawing.Point(0, 0);
@@ -375,7 +376,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel33);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CinemaUC";
             this.Size = new System.Drawing.Size(1088, 518);
             this.panel33.ResumeLayout(false);

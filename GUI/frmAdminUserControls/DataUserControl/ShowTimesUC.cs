@@ -184,5 +184,10 @@ namespace GUI.frmAdminUserControls.DataUserControl
 				e.SuppressKeyPress = true;//Tắt tiếng *ting của windows
 			}
 		}
-	}
+
+        private void dtgvShowtime_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+    }
 }

@@ -75,5 +75,24 @@ namespace GUI.DAO
         {
             return DataProvider.ExecuteQuery("SELECT * FROM NguoiDung");
         }
+
+
+
+        public static int GetDiemTichLuy(string userName)
+        {
+           // string query = "SELECT DiemTichLuy FROM KhachHang WHERE id IN (SELECT id FROM NguoiDung WHERE UserName = @userName)";
+            //object[] parameters = { userName };
+
+           // object result = DataProvider.ExecuteScalar(query, parameters);
+
+           // if (result != null && result != DBNull.Value)
+          //  {
+          //      return Convert.ToInt32(result);
+           // }
+
+            return 0; // Trả về 0 nếu không có kết quả hoặc lỗi
+        }
+
+
     }
 }

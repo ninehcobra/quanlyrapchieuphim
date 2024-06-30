@@ -104,6 +104,7 @@
             this.dtgvRevenue.AllowUserToAddRows = false;
             this.dtgvRevenue.AllowUserToDeleteRows = false;
             this.dtgvRevenue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvRevenue.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dtgvRevenue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvRevenue.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dtgvRevenue.Location = new System.Drawing.Point(150, 99);

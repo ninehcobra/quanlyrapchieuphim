@@ -106,9 +106,9 @@
             this.label4.Location = new System.Drawing.Point(11, 9);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 20);
+            this.label4.Size = new System.Drawing.Size(52, 20);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Mã Thành Viên:";
+            this.label4.Text = "Email:";
             // 
             // label3
             // 

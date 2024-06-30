@@ -306,6 +306,7 @@
             this.dtgvCustomer.AllowUserToAddRows = false;
             this.dtgvCustomer.AllowUserToDeleteRows = false;
             this.dtgvCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvCustomer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dtgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCustomer.Location = new System.Drawing.Point(156, 177);
             this.dtgvCustomer.Margin = new System.Windows.Forms.Padding(2);

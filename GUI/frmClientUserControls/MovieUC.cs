@@ -14,11 +14,15 @@ namespace GUI.frmClientUserControls
 {
     public partial class MovieUC : UserControl
     {
-        public MovieUC(frmClient frmClient)
+        frmClient frmClient;
+        User User;
+        public MovieUC(frmClient frmClient1,User user1)
         {
             InitializeComponent();
             dtpThoiGian.Value = DateTime.Now;
             LoadMovie(dtpThoiGian.Value);
+            frmClient= frmClient1;
+            User= user1;
         }
 
         private void LoadMovie(DateTime date)
@@ -98,11 +102,13 @@ namespace GUI.frmClientUserControls
                 timer1.Stop();
                 ShowTimes showTimes = lvLichChieu.SelectedItems[0].Tag as ShowTimes;
                 Movie movie = cboFilmName.SelectedItem as Movie;
-                frmTheatre frm = new frmTheatre(showTimes, movie);
-                this.Hide();
-                frm.ShowDialog();
+                BookingUC bookingUC=new BookingUC(showTimes, movie,frmClient,User);
+                frmClient.clientUC = "booking";
+                frmClient.RenderContent();
+                frmClient.SetBooking(bookingUC);
+
                 this.OnLoad(null);
-                this.Show();
+             
             }
         }
 

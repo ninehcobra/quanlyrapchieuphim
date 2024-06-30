@@ -165,6 +165,7 @@
             this.dtgvShowtime.AllowUserToAddRows = false;
             this.dtgvShowtime.AllowUserToDeleteRows = false;
             this.dtgvShowtime.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvShowtime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dtgvShowtime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvShowtime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvShowtime.Location = new System.Drawing.Point(0, 0);
@@ -172,6 +173,7 @@
             this.dtgvShowtime.ReadOnly = true;
             this.dtgvShowtime.Size = new System.Drawing.Size(845, 466);
             this.dtgvShowtime.TabIndex = 1;
+            this.dtgvShowtime.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvShowtime_CellContentClick);
             // 
             // panel2
             // 

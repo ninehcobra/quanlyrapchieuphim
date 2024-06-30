@@ -61,7 +61,7 @@
             this.panel1.Controls.Add(this.btnInsertFormat);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1161, 52);
             this.panel1.TabIndex = 0;
@@ -124,7 +124,7 @@
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 52);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1161, 466);
             this.panel2.TabIndex = 1;
@@ -134,10 +134,11 @@
             this.dtgvFormat.AllowUserToAddRows = false;
             this.dtgvFormat.AllowUserToDeleteRows = false;
             this.dtgvFormat.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvFormat.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dtgvFormat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvFormat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvFormat.Location = new System.Drawing.Point(0, 0);
-            this.dtgvFormat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtgvFormat.Margin = new System.Windows.Forms.Padding(2);
             this.dtgvFormat.Name = "dtgvFormat";
             this.dtgvFormat.ReadOnly = true;
             this.dtgvFormat.Size = new System.Drawing.Size(823, 466);
@@ -158,7 +159,7 @@
             this.panel3.Controls.Add(this.txtFormatID);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(823, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(338, 466);
             this.panel3.TabIndex = 0;
@@ -168,7 +169,7 @@
             this.cboFormat_ScreenID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFormat_ScreenID.FormattingEnabled = true;
             this.cboFormat_ScreenID.Location = new System.Drawing.Point(128, 140);
-            this.cboFormat_ScreenID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboFormat_ScreenID.Margin = new System.Windows.Forms.Padding(2);
             this.cboFormat_ScreenID.Name = "cboFormat_ScreenID";
             this.cboFormat_ScreenID.Size = new System.Drawing.Size(188, 21);
             this.cboFormat_ScreenID.TabIndex = 20;
@@ -191,7 +192,7 @@
             this.cboFormat_MovieID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFormat_MovieID.FormattingEnabled = true;
             this.cboFormat_MovieID.Location = new System.Drawing.Point(128, 63);
-            this.cboFormat_MovieID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboFormat_MovieID.Margin = new System.Windows.Forms.Padding(2);
             this.cboFormat_MovieID.Name = "cboFormat_MovieID";
             this.cboFormat_MovieID.Size = new System.Drawing.Size(188, 21);
             this.cboFormat_MovieID.TabIndex = 21;
@@ -236,7 +237,7 @@
             // txtFormat_ScreenName
             // 
             this.txtFormat_ScreenName.Location = new System.Drawing.Point(128, 170);
-            this.txtFormat_ScreenName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFormat_ScreenName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFormat_ScreenName.Name = "txtFormat_ScreenName";
             this.txtFormat_ScreenName.ReadOnly = true;
             this.txtFormat_ScreenName.Size = new System.Drawing.Size(188, 20);
@@ -257,7 +258,7 @@
             // txtFormat_MovieName
             // 
             this.txtFormat_MovieName.Location = new System.Drawing.Point(128, 90);
-            this.txtFormat_MovieName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFormat_MovieName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFormat_MovieName.Name = "txtFormat_MovieName";
             this.txtFormat_MovieName.ReadOnly = true;
             this.txtFormat_MovieName.Size = new System.Drawing.Size(188, 20);
@@ -266,7 +267,7 @@
             // txtFormatID
             // 
             this.txtFormatID.Location = new System.Drawing.Point(128, 13);
-            this.txtFormatID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFormatID.Margin = new System.Windows.Forms.Padding(2);
             this.txtFormatID.Name = "txtFormatID";
             this.txtFormatID.Size = new System.Drawing.Size(188, 20);
             this.txtFormatID.TabIndex = 14;
@@ -278,7 +279,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormatMovieUC";
             this.Size = new System.Drawing.Size(1161, 518);
             this.panel1.ResumeLayout(false);

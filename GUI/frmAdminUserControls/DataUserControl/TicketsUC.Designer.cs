@@ -139,7 +139,7 @@
             this.panel1.Controls.Add(this.lsvAllListShowTimes);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(644, 52);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(517, 466);
             this.panel1.TabIndex = 11;
@@ -155,7 +155,7 @@
             this.lsvAllListShowTimes.GridLines = true;
             this.lsvAllListShowTimes.HideSelection = false;
             this.lsvAllListShowTimes.Location = new System.Drawing.Point(5, 6);
-            this.lsvAllListShowTimes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lsvAllListShowTimes.Margin = new System.Windows.Forms.Padding(2);
             this.lsvAllListShowTimes.Name = "lsvAllListShowTimes";
             this.lsvAllListShowTimes.Size = new System.Drawing.Size(498, 459);
             this.lsvAllListShowTimes.TabIndex = 9;
@@ -188,6 +188,7 @@
             this.dtgvTicket.AllowUserToAddRows = false;
             this.dtgvTicket.AllowUserToDeleteRows = false;
             this.dtgvTicket.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvTicket.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dtgvTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvTicket.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvTicket.Location = new System.Drawing.Point(0, 52);
@@ -202,7 +203,7 @@
             this.Controls.Add(this.dtgvTicket);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel61);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TicketsUC";
             this.Size = new System.Drawing.Size(1161, 518);
             this.panel61.ResumeLayout(false);
