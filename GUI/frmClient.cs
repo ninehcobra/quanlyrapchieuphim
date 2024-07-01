@@ -51,6 +51,12 @@ namespace GUI
                 InfoUC infoUC = new InfoUC(this.loginAccount);
                 infoUC.Dock = DockStyle.Fill;
                 pnlContent.Controls.Add(infoUC);
+            }    else if(clientUC== "ticket")
+            {
+                pnlContent.Controls.Clear();
+                TicketUC ticketUC = new TicketUC(this.loginAccount);
+                ticketUC.Dock = DockStyle.Fill;
+                pnlContent.Controls.Add (ticketUC);
             }    
         }
 
@@ -113,6 +119,17 @@ namespace GUI
             else
             {
                 clientUC= "info";
+                RenderContent();
+            }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            if (clientUC == "ticket")
+            { }
+            else
+            {
+                clientUC = "ticket";
                 RenderContent();
             }
         }

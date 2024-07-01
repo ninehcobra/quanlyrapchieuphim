@@ -274,6 +274,12 @@
     <Compile Include="frmClientUserControls\MovieUC.Designer.cs">
       <DependentUpon>MovieUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmClientUserControls\TicketUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="frmClientUserControls\TicketUC.Designer.cs">
+      <DependentUpon>TicketUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConnectData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,6 +303,12 @@
     </Compile>
     <Compile Include="frmDashBoard.Designer.cs">
       <DependentUpon>frmDashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQRCODE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQRCODE.Designer.cs">
+      <DependentUpon>frmQRCODE.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReport.cs">
       <SubType>Form</SubType>
@@ -390,6 +402,9 @@
     <EmbeddedResource Include="frmClientUserControls\MovieUC.resx">
       <DependentUpon>MovieUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmClientUserControls\TicketUC.resx">
+      <DependentUpon>TicketUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConnectData.resx">
       <DependentUpon>frmConnectData.cs</DependentUpon>
     </EmbeddedResource>
@@ -401,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDashBoard.resx">
       <DependentUpon>frmDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQRCODE.resx">
+      <DependentUpon>frmQRCODE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>

@@ -34,6 +34,19 @@ namespace GUI.DAO
             return listTicket;
         }
 
+        public static List<Ticket> GetUserListTickets(string userId)
+        {
+            List<Ticket> listTicket = new List<Ticket>();
+            string query = "select * from Ve where idKhachHang = '" + userId + "' and TrangThai = 1";
+            DataTable data = DataProvider.ExecuteQuery(query);
+            foreach (DataRow row in data.Rows)
+            {
+                Ticket ticket = new Ticket(row);
+                listTicket.Add(ticket);
+            }
+            return listTicket;
+        }
+
         public static int CountToltalTicketByShowTime(string showTimesID)
         {
             string query = "Select count (id) from Ve where idLichChieu ='" + showTimesID + "'";
