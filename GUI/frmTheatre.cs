@@ -388,5 +388,10 @@ namespace GUI
         {
             this.Close();
         }
+
+        private void numericFreeTickets_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

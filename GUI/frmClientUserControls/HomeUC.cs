@@ -30,6 +30,8 @@ namespace GUI.frmClientUserControls
         {
             InitializeComponent();
             InitializeTimer();
+
+            LoadImageFromUrlAsync(imageUrls[currentIndex]);
         }
 
         private void InitializeTimer()

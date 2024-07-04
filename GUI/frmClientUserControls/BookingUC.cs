@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -15,6 +16,7 @@ using System.Windows.Forms;
 using ZXing;
 using ZXing.Common;
 using ZXing.QrCode;
+using static GUI.DAO.TicketDAO;
 
 namespace GUI.frmClientUserControls
 {
@@ -40,6 +42,7 @@ namespace GUI.frmClientUserControls
 
         frmClient frmClient;
         User User;
+        Customer customer;
         public BookingUC(ShowTimes showTimes, Movie movie, frmClient frmClient1,User user1)
         {
             InitializeComponent();
@@ -57,7 +60,11 @@ namespace GUI.frmClientUserControls
             ticketPrice = Times.TicketPrice;
             plusPoint=UserDAO.GetDiemTichLuy(User.UserName);
 
-            lblPlusPoint.Text = plusPoint.ToString();
+            lblPoint.Text = plusPoint.ToString();
+
+            DataTable data = CustomerDAO.GetCustomerMember(User.ID, User.HoTen);
+            customer = new Customer(data.Rows[0]);
+            lblPoint.Text = customer.Point.ToString();
 
             lblInformation.Text = "CGV Hung Vuong | " + Times.CinemaName + " | " + Times.MovieName;
             lblTime.Text = Times.Time.ToShortDateString() + " | "
@@ -122,7 +129,8 @@ namespace GUI.frmClientUserControls
 
                 listSeatSelected.Add(btnSeat);
                 plusPoint++;
-               
+                lblPlusPoint.Text = plusPoint + "";
+
             }
             else if (btnSeat.BackColor == Color.Yellow)
             {
@@ -204,9 +212,12 @@ namespace GUI.frmClientUserControls
 
             // Tạo thông điệp xác nhận mua vé
             string message = "Bạn có chắc chắn mua những vé: \n";
+            StringBuilder ticketIDs = new StringBuilder();
             foreach (Button btn in listSeatSelected)
             {
                 message += "[" + btn.Text + "] ";
+                Ticket ticket = btn.Tag as Ticket;
+                ticketIDs.Append(ticket.ID + ",");
             }
             message += "\nKhông?";
             DialogResult result = MessageBox.Show(message, "Hỏi Mua",
@@ -214,45 +225,212 @@ namespace GUI.frmClientUserControls
             if (result == DialogResult.OK)
             {
                 int ret = 0;
-                List<Attachment> attachments = new List<Attachment>();
+
+                // Xóa dấu phẩy cuối cùng
+                if (ticketIDs.Length > 0)
+                {
+                    ticketIDs.Length--;
+                }
+
+                // Tạo mã QR duy nhất cho chuỗi tất cả các mã vé đã đặt
+                Bitmap qrCode = GenerateQRCode(ticketIDs.ToString());
+
+                // Lưu mã QR vào một tệp tạm thời
+                string qrCodeFilePath = Path.Combine(Path.GetTempPath(), $"QRCode_{Guid.NewGuid()}.png");
+                qrCode.Save(qrCodeFilePath);
+
+                List<Attachment> attachments = new List<Attachment>
+        {
+            new Attachment(qrCodeFilePath)
+        };
+
+                // Lưu thông tin về các vé và tính toán tổng tiền
+                List<string> seatNames = new List<string>();
+                float totalAmount = 0;
 
                 foreach (Button btn in listSeatSelected)
                 {
                     Ticket ticket = btn.Tag as Ticket;
-
-                    // Mã vé của từng vé đã mua
-                    string ticketID = ticket.ID;
-
-                    // Tạo mã QR cho từng vé
-                    Bitmap qrCode = GenerateQRCode(ticketID);
-                    // Lưu lại mã QR vào thư mục (tuỳ chọn)
-
-                    // Tạo đường dẫn đến tệp QR Code (tuỳ chọn)
-                    string qrCodeFilePath = $"QRCode_{ticketID}.png";
-                    qrCode.Save(qrCodeFilePath);
-
-                    // Đính kèm tệp QR Code vào danh sách attachments (tuỳ chọn)
-                    attachments.Add(new Attachment(qrCodeFilePath));
-
-                    // Mua vé và kiểm tra kết quả
                     ret += TicketDAO.BuyTicket(ticket.ID, ticket.Type, User.ID, ticket.Price);
+                    seatNames.Add(ticket.SeatName);
+                    totalAmount += ticket.Price;
                 }
 
-                // Kiểm tra xem tất cả các vé đã được mua thành công
+                customer.Point += plusPoint;
+                CustomerDAO.UpdatePointCustomer(customer.ID, customer.Point);
+
                 if (ret == listSeatSelected.Count)
                 {
                     MessageBox.Show("Bạn đã mua vé thành công!");
+                    plusPoint = 0;
+                    lblPlusPoint.Text = plusPoint.ToString();
 
                     // Render lại form (tuỳ chọn)
                     RenderForm();
 
+                    // Lấy thông tin chi tiết về phim và giờ chiếu dựa trên ID vé đầu tiên
+                    Ticket firstTicket = listSeatSelected[0].Tag as Ticket;
+                    MovieShowTime movieShowTime = TicketDAO.GetMovieShowTimeByTicketId(firstTicket.ID);
+
+                    // Tính toán tổng tiền, số tiền giảm và số tiền cần trả
+                    float discountAmount = discount;
+                    float amountToPay = totalAmount - discountAmount;
+
+                    // Tạo định dạng tiền tệ VNĐ
+                    CultureInfo culture = new CultureInfo("vi-VN");
+                    NumberFormatInfo nfi = culture.NumberFormat;
+                    nfi.CurrencySymbol = "VNĐ";
+
                     // Gửi email chứa các thông tin mua vé và mã QR cho người mua
                     string userEmail = User.Email; // Địa chỉ email người mua
                     string emailSubject = "Xác nhận mua vé"; // Tiêu đề email
-                    string emailBody = "<!doctype html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>OTP</title>\r\n    <style>\r\n      /* Styles for small screens */\r\n      @media (max-width: 767px) {\r\n        .container {\r\n          width: 90%;\r\n          padding: 12px;\r\n        }\r\n        .logo img {\r\n          height: 30px;\r\n        }\r\n        .heading {\r\n          font-size: 24px;\r\n        }\r\n        .otp-banner img {\r\n          max-width: 100%;\r\n          height: auto;\r\n        }\r\n        .content {\r\n          padding: 20px;\r\n        }\r\n        .footer {\r\n          font-size: 12px;\r\n        }\r\n      }\r\n\r\n      /* Styles for medium screens */\r\n      @media (min-width: 768px) and (max-width: 1023px) {\r\n        .container {\r\n          width: 80%;\r\n        }\r\n        .logo img {\r\n          height: 40px;\r\n        }\r\n        .heading {\r\n          font-size: 32px;\r\n        }\r\n        .otp-banner img {\r\n          max-width: 100%;\r\n          height: auto;\r\n        }\r\n        .content {\r\n          padding: 30px;\r\n        }\r\n        .footer {\r\n          font-size: 14px;\r\n        }\r\n      }\r\n\r\n      /* Styles for large screens */\r\n      @media (min-width: 1024px) {\r\n        .container {\r\n          width: 60%;\r\n          max-width: 800px; /* Giới hạn chiều rộng tối đa */\r\n        }\r\n        .logo img {\r\n          height: 45px;\r\n        }\r\n        .heading {\r\n          font-size: 38px;\r\n        }\r\n        .otp-banner img {\r\n          max-width: 100%;\r\n          height: auto;\r\n        }\r\n        .content {\r\n          padding: 40px 48px;\r\n        }\r\n        .footer {\r\n          font-size: 16px;\r\n        }\r\n      }\r\n\r\n      /* Căn giữa nội dung */\r\n      .container {\r\n        margin: 0 auto;\r\n      }\r\n    </style>\r\n  </head>\r\n  <body style=\"font-family: 'Poppins', sans-serif; background-color: #101010; color: #ffffff; border-radius: 16px\">\r\n    <div style=\"display: table; width: 100%\">\r\n      <div style=\"display: table-cell; vertical-align: middle\">\r\n        <div class=\"container\" style=\"padding: 24px\">\r\n          <div class=\"logo\" style=\"width: 100%\">\r\n            <img\r\n              src=\"https://raw.githubusercontent.com/ninehcobra/free-host-image/main/cinema-logo.png\"\r\n              alt=\"logo\"\r\n              style=\"height: 45px\"\r\n            />\r\n          </div>\r\n          <div style=\"margin-top: 32px; text-align: center\">\r\n            <div class=\"heading\" style=\"font-size: 38px; font-weight: 700\">Buy ticket successfully</div>\r\n            <div style=\"margin-top: 12px\">\r\n              <img\r\n                class=\"otp-banner\"\r\n                src=\"https://raw.githubusercontent.com/ninehcobra/free-host-image/main/congrat.png\"\r\n                alt=\"otp-banner\"\r\n                style=\"height: 200px\"\r\n              />\r\n              <div class=\"content\" style=\"padding: 40px 48px; background-color: #18181a\">\r\n                <div style=\"font-weight: 200; font-size: 14px; text-align: justify; line-height: 1.6\">\r\n                  Thank you for trusting and booking movie tickets from our application. Please use the QR code I send\r\n                  below at the counter to enter the theater.\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"footer\" style=\"margin-top: 32px; text-align: center; font-size: 14px\">\r\n            Glad you're here, PC Team\r\n          </div>\r\n          <div style=\"margin-top: 24px; text-align: center\">\r\n            <ul style=\"list-style: none; padding: 0\">\r\n              <li style=\"display: inline-block; margin-right: 4px\">\r\n                <a href=\"/\" style=\"color: #103fcc; font-weight: 600; text-decoration: none\">QS</a>\r\n              </li>\r\n              <li style=\"display: inline-block; margin-right: 4px; color: #ffffff\">|</li>\r\n              <li style=\"display: inline-block; margin-right: 4px\">\r\n                <a href=\"/\" style=\"color: #103fcc; font-weight: 600; text-decoration: none\">Privacy Policy</a>\r\n              </li>\r\n              <li style=\"display: inline-block; margin-right: 4px; color: #ffffff\">|</li>\r\n              <li style=\"display: inline-block\">\r\n                <a href=\"/\" style=\"color: #103fcc; font-weight: 600; text-decoration: none\">Support</a>\r\n              </li>\r\n            </ul>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>\r\n"; // Nội dung email là HTML (bắt đầu thẻ html)
 
-                    // Thêm nội dung email, ví dụ:
-                  
+                    string emailBody = $@"
+            <!doctype html>
+            <html lang='en'>
+            <head>
+                <meta charset='UTF-8' />
+                <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+                <title>OTP</title>
+                <style>
+                    /* Styles for small screens */
+                    @media (max-width: 767px) {{
+                        .container {{
+                            width: 90%;
+                            padding: 12px;
+                        }}
+                        .logo img {{
+                            height: 30px;
+                        }}
+                        .heading {{
+                            font-size: 24px;
+                        }}
+                        .otp-banner img {{
+                            max-width: 100%;
+                            height: auto;
+                        }}
+                        .content {{
+                            padding: 20px;
+                        }}
+                        .footer {{
+                            font-size: 12px;
+                        }}
+                    }}
+
+                    /* Styles for medium screens */
+                    @media (min-width: 768px) and (max-width: 1023px) {{
+                        .container {{
+                            width: 80%;
+                        }}
+                        .logo img {{
+                            height: 40px;
+                        }}
+                        .heading {{
+                            font-size: 32px;
+                        }}
+                        .otp-banner img {{
+                            max-width: 100%;
+                            height: auto;
+                        }}
+                        .content {{
+                            padding: 30px;
+                        }}
+                        .footer {{
+                            font-size: 14px;
+                        }}
+                    }}
+
+                    /* Styles for large screens */
+                    @media (min-width: 1024px) {{
+                        .container {{
+                            width: 60%;
+                            max-width: 800px; /* Giới hạn chiều rộng tối đa */
+                        }}
+                        .logo img {{
+                            height: 45px;
+                        }}
+                        .heading {{
+                            font-size: 38px;
+                        }}
+                        .otp-banner img {{
+                            max-width: 100%;
+                            height: auto;
+                        }}
+                        .content {{
+                            padding: 40px 48px;
+                        }}
+                        .footer {{
+                            font-size: 16px;
+                        }}
+                    }}
+
+                    /* Căn giữa nội dung */
+                    .container {{
+                        margin: 0 auto;
+                    }}
+                </style>
+            </head>
+            <body style='font-family: Poppins, sans-serif; background-color: #101010; color: #ffffff; border-radius: 16px'>
+                <div style='display: table; width: 100%'>
+                    <div style='display: table-cell; vertical-align: middle'>
+                        <div class='container' style='padding: 24px'>
+                            <div class='logo' style='width: 100%'>
+                                <img
+                                    src='https://raw.githubusercontent.com/ninehcobra/free-host-image/main/cinema-logo.png'
+                                    alt='logo'
+                                    style='height: 45px'
+                                />
+                            </div>
+                            <div style='margin-top: 32px; text-align: center'>
+                                <div class='heading' style='font-size: 38px; font-weight: 700'>Buy ticket successfully</div>
+                                <div style='margin-top: 12px'>
+                                    <img
+                                        class='otp-banner'
+                                        src='https://raw.githubusercontent.com/ninehcobra/free-host-image/main/congrat.png'
+                                        alt='otp-banner'
+                                        style='height: 200px'
+                                    />
+                                    <div class='content' style='padding: 40px 48px; background-color: #18181a; color:white !important'>
+                                        <div style='font-weight: 200; font-size: 14px; text-align: justify; line-height: 1.6'>
+                                            Thank you for trusting and booking movie tickets from our application. Please use the QR code attached below at the counter to enter the theater.
+                                        </div>
+                                        <div style='font-weight: 200; font-size: 14px; text-align: justify; line-height: 1.6; margin-top: 20px;'>
+                                            <p><strong>Movie:</strong> {movieShowTime.TenPhim}</p>
+                                            <p><strong>Showtime:</strong> {movieShowTime.ThoiGianChieu}</p>
+                                            <p><strong>Room:</strong> {movieShowTime.TenPhong}</p>
+                                            <p><strong>Screen Type:</strong> {movieShowTime.TenMH}</p>
+                                            <p><strong>Seats:</strong> {string.Join(", ", seatNames)}</p>
+                                            <p><strong>Total Price:</strong> {totalAmount.ToString("C", nfi)}</p>
+                                            <p><strong>Discount:</strong> {discountAmount.ToString("C", nfi)}</p>
+                                            <p><strong>Amount to Pay:</strong> {amountToPay.ToString("C", nfi)}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='footer' style='margin-top: 32px; text-align: center; font-size: 14px'>
+                                Glad you're here, PC Team
+                            </div>
+                            <div style='margin-top: 24px; text-align: center'>
+                                <ul style='list-style: none; padding: 0'>
+                                    <li style='display: inline-block; margin-right: 4px'>
+                                        <a href='/' style='color: #103fcc; font-weight: 600; text-decoration: none'>QS</a>
+                                    </li>
+                                    <li style='display: inline-block; margin-right: 4px; color: #ffffff'>|</li>
+                                    <li style='display: inline-block; margin-right: 4px'>
+                                        <a href='/' style='color: #103fcc; font-weight: 600; text-decoration: none'>Privacy Policy</a>
+                                    </li>
+                                    <li style='display: inline-block; margin-right: 4px; color: #ffffff'>|</li>
+                                    <li style='display: inline-block'>
+                                        <a href='/' style='color: #103fcc; font-weight: 600; text-decoration: none'>Support</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+            "; // Nội dung email là HTML (bắt đầu thẻ html)
 
                     // Gửi email với nội dung là HTML và đính kèm tệp QR Code
                     SendEmail(userEmail, emailSubject, emailBody, attachments);
@@ -313,16 +491,70 @@ namespace GUI.frmClientUserControls
                     }
                 }
             }
+            catch (SmtpException smtpEx)
+            {
+                MessageBox.Show("Đã xảy ra lỗi SMTP khi gửi email: " + smtpEx.Message + "\n" + smtpEx.StackTrace);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi khi gửi email: " + ex.Message);
+                MessageBox.Show("Đã xảy ra lỗi khi gửi email: " + ex.Message + "\n" + ex.StackTrace);
             }
         }
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             frmClient.clientUC = "movie";
             frmClient.RenderContent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int freeTickets = (int)numericFreeTickets.Value;
+            if (freeTickets <= 0) return;
+
+            if (freeTickets > listSeat.Count)
+            {
+                MessageBox.Show("BẠN CHỈ ĐỔI ĐƯỢC TỐT ĐA [" + listSeatSelected.Count + "] VÉ", "THÔNG BÁO");
+                return;
+            }
+            int pointFreeTicket = freeTickets * 20;
+            if (customer.Point < pointFreeTicket)
+            {
+                MessageBox.Show("BẠN KHÔNG ĐỦ ĐIỂM TÍCH LŨY ĐỂ ĐỔI [" + freeTickets + "] VÉ", "THÔNG BÁO");
+                return;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("BẠN CÓ MUỐN DÙNG ĐIỂM TÍCH LŨY ĐỂ ĐỔI [" + freeTickets + "] VÉ MIỄN PHÍ KHÔNG?",
+                                        "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    customer.Point -= pointFreeTicket;
+                    plusPoint -= freeTickets;
+
+                    if (CustomerDAO.UpdatePointCustomer(customer.ID, customer.Point))
+                    {
+                        MessageBox.Show("BẠN ĐÃ DỔI ĐƯỢC [" + freeTickets + "] VÉ MIỄN PHÍ THÀNH CÔNG", "THÔNG BÁO");
+                    }
+                    lblPoint.Text = "" + customer.Point;
+                    lblPlusPoint.Text = "" + plusPoint;
+
+                    for (int i = 0; i < listSeatSelected.Count && freeTickets > 0; i++)
+                    {
+                        Ticket ticket = listSeatSelected[i].Tag as Ticket;
+                        if (ticket.Price != 0)
+                        {
+                            discount += ticket.Price;
+                            ticket.Price = 0;
+                            freeTickets--;
+                        }
+                    }
+
+                    payment = total - discount;
+                    LoadBill();
+                }
+            }
         }
     }
 }

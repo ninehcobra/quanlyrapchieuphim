@@ -167,9 +167,9 @@
             // 
             this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pictureBox7.Image = global::GUI.Properties.Resources._448905878_3262941527334419_8319597172813869332_n;
-            this.pictureBox7.Location = new System.Drawing.Point(0, 751);
+            this.pictureBox7.Location = new System.Drawing.Point(0, 755);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(1250, 99);
+            this.pictureBox7.Size = new System.Drawing.Size(1250, 95);
             this.pictureBox7.TabIndex = 11;
             this.pictureBox7.TabStop = false;
             // 
@@ -212,6 +212,7 @@
             this.Name = "frmClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmClient";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmClient_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
