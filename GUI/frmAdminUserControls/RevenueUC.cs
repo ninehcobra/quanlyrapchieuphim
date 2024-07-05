@@ -1,16 +1,35 @@
 ﻿using GUI.DAO;
+using LiveCharts.Wpf;
+using LiveCharts;
 using System;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Markup;
+
 
 namespace GUI.frmAdminUserControls
 {
     public partial class RevenueUC : UserControl
     {
+        private LiveCharts.WinForms.CartesianChart cartesianChart;
         public RevenueUC()
         {
             InitializeComponent();
+
+            this.cartesianChart = new LiveCharts.WinForms.CartesianChart();
+            this.SuspendLayout();
+            this.cartesianChart.Location = new System.Drawing.Point(150, 99);
+            this.cartesianChart.Name = "cartesianChart";
+            this.cartesianChart.Size = new System.Drawing.Size(775, 342);
+            this.cartesianChart.TabIndex = 0;
+            this.Controls.Add(this.cartesianChart);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+            dtgvRevenue.Visible = false;
+
+
             LoadRevenue();
         }
         void LoadRevenue()
@@ -33,9 +52,48 @@ namespace GUI.frmAdminUserControls
         void LoadRevenue(string idMovie, DateTime fromDate, DateTime toDate)
         {
             CultureInfo culture = new CultureInfo("vi-VN");
-            dtgvRevenue.DataSource = RevenueDAO.GetRevenue(idMovie, fromDate, toDate);
+            DataTable data = RevenueDAO.GetRevenue(idMovie, fromDate, toDate);
+            dtgvRevenue.DataSource = data;
             txtDoanhThu.Text = GetSumRevenue().ToString("c", culture);
+
+            LoadChartRevenue(data);
         }
+
+        void LoadChartRevenue(DataTable data)
+        {
+            cartesianChart.Series.Clear();
+            cartesianChart.AxisX.Clear();
+            cartesianChart.AxisY.Clear();
+
+            var columnSeries = new ColumnSeries
+            {
+                Title = "Revenue",
+                Values = new ChartValues<decimal>()
+            };
+
+            foreach (DataRow row in data.Rows)
+            {
+                string movieName = row["Tên phim"].ToString();
+                decimal revenue = Convert.ToDecimal(row["Tiền vé"]);
+
+                columnSeries.Values.Add(revenue);
+            }
+
+            cartesianChart.Series.Add(columnSeries);
+
+            cartesianChart.AxisX.Add(new Axis
+            {
+                Title = "Movie",
+                Labels = data.AsEnumerable().Select(row => row["Tên phim"].ToString()).ToArray()
+            });
+
+            cartesianChart.AxisY.Add(new Axis
+            {
+                Title = "Revenue",
+                LabelFormatter = value => value.ToString("C", new CultureInfo("vi-VN"))
+            });
+        }
+
         decimal GetSumRevenue()
         {
             decimal sum = 0;

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static GUI.DAO.TicketDAO;
 
 namespace GUI.frmClientUserControls
 {
@@ -19,15 +20,13 @@ namespace GUI.frmClientUserControls
         {
             InitializeComponent();
             User = user;
-            LoadTicketsBoughtByShowTimes(User.ID);
-
-
+            LoadGroupedTickets(User.ID);
         }
 
-        void LoadTicketsBoughtByShowTimes(string id)
+        void LoadGroupedTickets(string userId)
         {
-            List<Ticket> listTicket = TicketDAO.GetUserListTickets(id);
-            dtgvTicket.DataSource = listTicket;
+            List<GroupedTicket> listGroupedTicket = TicketDAO.GetGroupedTicketsByUser(userId);
+            dtgvTicket.DataSource = listGroupedTicket;
         }
 
         private void dtgvTicket_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -36,19 +35,22 @@ namespace GUI.frmClientUserControls
             {
                 DataGridViewRow row = dtgvTicket.Rows[e.RowIndex];
 
-                // Lấy dữ liệu từ dòng hiện tại để lấy thông tin vé
-                Ticket ticket = new Ticket()
+                // Lấy dữ liệu từ dòng hiện tại để lấy thông tin vé nhóm
+                GroupedTicket groupedTicket = new GroupedTicket()
                 {
-                    ID = row.Cells["ID"].Value.ToString(), // Thay "ID" bằng tên cột ID trong DataGridView
-                    SeatName = row.Cells["SeatName"].Value.ToString(),
-                    // Lấy các thông tin khác tương tự
-                    // Ví dụ: ticket.Price = Convert.ToSingle(row.Cells["Price"].Value);
+                    ShowTimeID = row.Cells["ShowTimeID"].Value.ToString(),
+                    ShowTime = Convert.ToDateTime(row.Cells["ShowTime"].Value),
+                    MovieName = row.Cells["MovieName"].Value.ToString(),
+                    RoomName = row.Cells["RoomName"].Value.ToString(),
+                    Seats = row.Cells["Seats"].Value.ToString(),
+                    TotalPrice = Convert.ToSingle(row.Cells["TotalPrice"].Value)
                 };
 
-                // Hiển thị thông tin vé (ví dụ: MessageBox)
-                frmQRCODE frmQRCODE = new frmQRCODE(ticket.ID);
-                frmQRCODE.ShowDialog();
+              
 
+                // Hoặc hiển thị mã QR cho thông tin nhóm vé
+                frmQRCODE frmQRCODE = new frmQRCODE(groupedTicket);
+                frmQRCODE.ShowDialog();
             }
         }
     }

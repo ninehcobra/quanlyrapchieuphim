@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using ZXing.Common;
 using ZXing;
 using GUI.DTO;
+using GUI.DAO;
+using System.Globalization;
 
 namespace GUI.frmClientUserControls
 {
@@ -29,6 +31,8 @@ namespace GUI.frmClientUserControls
             lblName.Text = User.HoTen;
             lblEmail.Text = User.Email;
             label3.Text=User.HoTen;
+            float totalSpent = TicketDAO.GetTotalAmountSpentByUser(User.ID);
+            lblTotalSpent.Text = $"{totalSpent.ToString("C", new CultureInfo("vi-VN"))}";
         }
 
         private void GenerateBarcode(string id)

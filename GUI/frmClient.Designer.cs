@@ -62,6 +62,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1250, 40);
             this.panel1.TabIndex = 3;
+            this.panel1.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // lblUser
             // 
@@ -107,6 +108,7 @@
             this.label1.Size = new System.Drawing.Size(91, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "VÉ CỦA TÔI";
+            this.label1.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox3
             // 

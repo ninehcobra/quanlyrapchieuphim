@@ -47,6 +47,8 @@
             this.lblAddress = new System.Windows.Forms.Label();
             this.pictureBoxBarcode = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblTotalSpent = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBarcode)).BeginInit();
             this.SuspendLayout();
@@ -254,11 +256,35 @@
             this.label15.TabIndex = 17;
             this.label15.Text = "Thẻ thành viên";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.label11.Location = new System.Drawing.Point(62, 357);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(100, 16);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "Tổng chi tiêu:";
+            // 
+            // lblTotalSpent
+            // 
+            this.lblTotalSpent.AutoSize = true;
+            this.lblTotalSpent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalSpent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.lblTotalSpent.Location = new System.Drawing.Point(168, 357);
+            this.lblTotalSpent.Name = "lblTotalSpent";
+            this.lblTotalSpent.Size = new System.Drawing.Size(63, 16);
+            this.lblTotalSpent.TabIndex = 19;
+            this.lblTotalSpent.Text = "Đồng Nai";
+            // 
             // InfoUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(252)))), ((int)(((byte)(240)))));
+            this.Controls.Add(this.lblTotalSpent);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.pictureBoxBarcode);
             this.Controls.Add(this.lblAddress);
@@ -308,5 +334,7 @@
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.PictureBox pictureBoxBarcode;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblTotalSpent;
     }
 }

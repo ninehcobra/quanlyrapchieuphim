@@ -25,7 +25,7 @@ namespace GUI.frmClientUserControls
         ShowTimes Times;
         Movie Movie;
 
-        int SIZE = 30;//Size của ghế
+        int SIZE = 25;//Size của ghế
         int GAP = 7;//Khoảng cách giữa các ghế
 
         List<Ticket> listSeat = new List<Ticket>();

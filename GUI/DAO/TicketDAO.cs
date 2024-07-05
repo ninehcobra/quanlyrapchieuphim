@@ -151,5 +151,70 @@ JOIN dbo.PhongChieu pc ON lc.idPhong = pc.id
             public string TenPhong { get; set; }
             public string TenMH { get; set; }
         }
+
+        public class GroupedTicket
+        {
+            public string ShowTimeID { get; set; }
+            public DateTime ShowTime { get; set; }
+            public string MovieName { get; set; }
+            public string RoomName { get; set; }
+            public string Seats { get; set; }
+            public float TotalPrice { get; set; }
+        }
+
+        public static float GetTotalAmountSpentByUser(string userId)
+        {
+            string query = @"
+    SELECT SUM(v.TienBanVe) AS TotalSpent
+    FROM dbo.Ve v
+    WHERE v.idKhachHang = @userId AND v.TrangThai = 1";
+
+            object result = DataProvider.ExecuteScalar(query, new object[] { userId });
+
+            if (result != null && result != DBNull.Value)
+            {
+                return Convert.ToSingle(result);
+            }
+            return 0;
+        }
+
+        public static List<GroupedTicket> GetGroupedTicketsByUser(string userId)
+        {
+            List<GroupedTicket> groupedTickets = new List<GroupedTicket>();
+            string query = @"
+        SELECT 
+            lc.id AS ShowTimeID,
+            lc.ThoiGianChieu AS ShowTime,
+            p.TenPhim AS MovieName,
+            pc.TenPhong AS RoomName,
+            STRING_AGG(v.MaGheNgoi, ', ') AS Seats,
+            SUM(v.TienBanVe) AS TotalPrice
+       FROM dbo.Ve v
+JOIN dbo.LichChieu lc ON v.idLichChieu = lc.id
+JOIN dbo.DinhDangPhim ddp ON lc.idDinhDang = ddp.id
+JOIN dbo.Phim p ON ddp.idPhim = p.id
+JOIN dbo.PhongChieu pc ON lc.idPhong = pc.id
+        WHERE v.idKhachHang = @userId AND v.TrangThai = 1
+        GROUP BY lc.id, lc.ThoiGianChieu, p.TenPhim, pc.TenPhong
+        ORDER BY lc.ThoiGianChieu DESC";
+
+            DataTable data = DataProvider.ExecuteQuery(query, new object[] { userId });
+
+            foreach (DataRow row in data.Rows)
+            {
+                GroupedTicket groupedTicket = new GroupedTicket()
+                {
+                    ShowTimeID = row["ShowTimeID"].ToString(),
+                    ShowTime = Convert.ToDateTime(row["ShowTime"]),
+                    MovieName = row["MovieName"].ToString(),
+                    RoomName = row["RoomName"].ToString(),
+                    Seats = row["Seats"].ToString(),
+                    TotalPrice = Convert.ToSingle(row["TotalPrice"])
+                };
+                groupedTickets.Add(groupedTicket);
+            }
+            return groupedTickets;
+        }
+
     }
 }
