@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -139,6 +140,31 @@ namespace GUI
             if (MessageBox.Show("Bạn có thật sự muốn đăng xuất không?", "Thông báo", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            // Địa chỉ email hỗ trợ
+            string supportEmail = "chinhtnc2903@gmail.com";
+
+            // Tiêu đề email
+            string emailSubject = Uri.EscapeDataString("Support Request");
+
+            // Nội dung email
+            string emailBody = Uri.EscapeDataString("Please describe your issue here...");
+
+            // Đường dẫn mailto
+            string mailtoUrl = $"mailto:{supportEmail}?subject={emailSubject}&body={emailBody}";
+
+            // Mở ứng dụng email mặc định
+            try
+            {
+                Process.Start(mailtoUrl);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to open email client. Please contact support directly at " + supportEmail);
             }
         }
     }

@@ -69,7 +69,7 @@
             this.lblUser.AutoSize = true;
             this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
-            this.lblUser.Location = new System.Drawing.Point(1084, 14);
+            this.lblUser.Location = new System.Drawing.Point(966, 14);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(85, 16);
             this.lblUser.TabIndex = 5;
@@ -79,7 +79,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::GUI.Properties.Resources.user;
-            this.pictureBox5.Location = new System.Drawing.Point(1044, 3);
+            this.pictureBox5.Location = new System.Drawing.Point(931, 3);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(35, 35);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -90,7 +90,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::GUI.Properties.Resources.ticket;
-            this.pictureBox4.Location = new System.Drawing.Point(905, 3);
+            this.pictureBox4.Location = new System.Drawing.Point(787, 3);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(35, 35);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -103,7 +103,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(120)))));
-            this.label1.Location = new System.Drawing.Point(943, 14);
+            this.label1.Location = new System.Drawing.Point(828, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 16);
             this.label1.TabIndex = 3;
@@ -156,6 +156,7 @@
             this.label5.Size = new System.Drawing.Size(76, 20);
             this.label5.TabIndex = 9;
             this.label5.Text = "HỖ TRỢ";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // pnlContent
             // 

@@ -33,6 +33,32 @@ namespace GUI.frmClientUserControls
             label3.Text=User.HoTen;
             float totalSpent = TicketDAO.GetTotalAmountSpentByUser(User.ID);
             lblTotalSpent.Text = $"{totalSpent.ToString("C", new CultureInfo("vi-VN"))}";
+
+            DataTable customerData = DataProvider.ExecuteQuery("SELECT * FROM KHACHHANG WHERE id = '" + User.ID + "'");
+            if (customerData.Rows.Count > 0)
+            {
+                DataRow row = customerData.Rows[0];
+
+                // Kiểm tra và gán giá trị cho số điện thoại
+                if (row["SDT"] != DBNull.Value)
+                {
+                    lblPhone.Text = row["SDT"].ToString();
+                }
+                else
+                {
+                    lblPhone.Text = "Chưa thêm"; // Hoặc giá trị mặc định nào đó
+                }
+
+                // Kiểm tra và gán giá trị cho địa chỉ
+                if (row["DiaChi"] != DBNull.Value)
+                {
+                    lblAddress.Text = row["DiaChi"].ToString();
+                }
+                else
+                {
+                    lblAddress.Text = "Chưa thêm"; // Hoặc giá trị mặc định nào đó
+                }
+            }
         }
 
         private void GenerateBarcode(string id)
@@ -62,6 +88,16 @@ namespace GUI.frmClientUserControls
             catch (Exception ex)
             {
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EditUserInfoForm editForm = new EditUserInfoForm(User);
+            if (editForm.ShowDialog() == DialogResult.OK)
+            {
+                // Reload user info after editing
+                renderInfo();
             }
         }
     }
